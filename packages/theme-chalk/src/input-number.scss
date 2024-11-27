@@ -134,13 +134,8 @@
     }
 
     @include e((increase, decrease)) {
-      @include set-css-var-value(
-        ('input', 'number-controls-height'),
-        math.div(map.get($input-height, 'default') - 2, 2)
-      );
-
-      height: getCssVar('input-number-controls-height');
-      line-height: getCssVar('input-number-controls-height');
+      box-sizing: border-box;
+      height: 50%;
 
       [class*='#{$namespace}-icon'] {
         transform: scale(0.8);
