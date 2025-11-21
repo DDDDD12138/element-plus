@@ -636,6 +636,11 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   }
 
   const onOptionCreate = (vm: OptionPublicInstance) => {
+    const existing = states.options.get(vm.value)
+    // If there is already a non-created option for this value,
+    // keep it and prevent the created option from overwriting it.
+    if (existing && !existing.created && vm.created) return
+
     states.options.set(vm.value, vm)
     states.cachedOptions.set(vm.value, vm)
   }
